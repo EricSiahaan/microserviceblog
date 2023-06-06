@@ -13,6 +13,7 @@ const CreateBlog = (props) => {
   const dispatch = useDispatch('');
   const history = useHistory();
 
+
   useEffect(() => {
     console.log('params: ', props);
     const id = props.match.params.id
@@ -32,6 +33,7 @@ const CreateBlog = (props) => {
     }
   }, [])
 
+  // handle create blog
   const onSubmit = () => {
     const id = props.match.params.id
     if (isUpdate) {
@@ -43,6 +45,7 @@ const CreateBlog = (props) => {
     }
   }
 
+  // handle image upload
   const onImageUpload = (e) => {
     const file = e.target.files[0];
     dispatch(setForm('image', file));

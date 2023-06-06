@@ -7,11 +7,11 @@ const path = require('path');
 const cors = require('cors')
 
 const app = express();
-// const productRoutes = require("./src/routes/products");
-// const authRoutes = require("./src/routes/auth.js");
+
 const blogRoutes = require("./src/routes/blog");
 const userRoutes = require('./src/routes/user.js')
 
+//untuk menentukan lokasi penyimpanan
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'images');
@@ -21,6 +21,7 @@ const fileStorage = multer.diskStorage({
   }
 })
 
+// validasi untuk create photo
 const fileFilter = (req, file, cb) => {
   if (file.mimetype === 'image/png' ||
     file.mimetype === 'image/jpeg' ||
@@ -32,6 +33,7 @@ const fileFilter = (req, file, cb) => {
   }
 }
 
+//middleware
 app.use(cors())
 app.use(bodyParser.json());
 app.use('/images', express.static(path.join(__dirname, 'images')))
@@ -60,6 +62,8 @@ app.use((error, req, res, next) => {
   res.status(status).json({ message: message, data: data })
 });
 
+
+// connect dengan database
 mongoose.connect(`${process.env.MONGO_URI}`, { useNewUrlParser: true })
   .then(() => {
     app.listen(4000, () => console.log('Connection Succes'));

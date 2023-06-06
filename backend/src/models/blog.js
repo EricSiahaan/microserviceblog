@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// data blog
 const BlogPost = new Schema({
     title: {
         type: String,

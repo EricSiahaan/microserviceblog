@@ -2,6 +2,8 @@ require('dotenv').config();
 
 const jwt = require('jsonwebtoken');
 
+
+// verifikasi auht dengan jwt
 module.exports = async (req, res, next) => {
     const token = req.header('Authorization');
 

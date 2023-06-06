@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs')
 const BlogPost = require('../models/blog');
 
-
+// membuat blog
 exports.createBlog = (req, res, next) => {
 
 
@@ -47,6 +47,7 @@ exports.createBlog = (req, res, next) => {
     })
 }
 
+// mendapatkan semua artikel blog
 exports.getAllBlogPost = (req, res, next) => {
   const currentPage = req.query.page || 1;
   const perPage = req.query.perPage || 5;
@@ -74,6 +75,7 @@ exports.getAllBlogPost = (req, res, next) => {
     })
 }
 
+//mendapatkan blog berdasarkan id
 exports.getBlogPostById = (req, res, next) => {
   const postId = req.params.postId;
   BlogPost.findById(postId)
@@ -94,6 +96,7 @@ exports.getBlogPostById = (req, res, next) => {
     })
 }
 
+//melakukan perubahan berdasarkan id 
 exports.updateBlogPostById = (req, res, next) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
@@ -140,6 +143,7 @@ exports.updateBlogPostById = (req, res, next) => {
 
 }
 
+//menghapus blog
 exports.deleteBlogPost = (req, res, next) => {
   const postId = req.params.postId;
 
@@ -166,6 +170,7 @@ exports.deleteBlogPost = (req, res, next) => {
     })
 }
 
+//menghapus gambar
 const removeImage = (filePath) => {
   console.log('filePath', filePath);
   console.log('dir name: ', __dirname);
